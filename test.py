@@ -13,7 +13,7 @@ print("Device being used:", device)
 dataset = 'ucf101'  # Dataset name
 num_classes = 3     # Number of classes
 
-save_dir = 'C3D-ucf101_epoch-99.pth.tar'  # Directory where the checkpoint is saved
+save_dir = '/share/luoqifeng-local/attribution_analysis/run/run_2/models/C3D-ucf101_epoch-99.pth.tar'  # Directory where the checkpoint is saved
 
 
 model = C3D_model.C3D(num_classes=num_classes, pretrained=False)
