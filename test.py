@@ -2,12 +2,13 @@ import torch
 from torch.utils.data import DataLoader
 from torch.autograd import Variable
 from tqdm import tqdm
-from sklearn.metrics import confusion_matrix, accuracy_score, classification_report
+from sklearn.metrics import  confusion_matrix, accuracy_score, classification_report
 from network import C3D_model
 from dataloaders.dataset import VideoDataset
 
 # Use GPU if available else revert to CPU
-device = torch.device("cuda:1" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda:3" if torch.cuda.is_available() else "cpu")
+torch.backends.cudnn.enabled=False
 print("Device being used:", device)
 
 dataset = 'ucf101'  # Dataset name
@@ -35,6 +36,7 @@ all_preds = []
 all_labels = []
 
 # Loop over the validation data
+
 with torch.no_grad():
     for inputs, labels in tqdm(val_dataloader):
         inputs = Variable(inputs).to(device)
@@ -46,6 +48,7 @@ with torch.no_grad():
 
         all_labels.extend(labels.cpu().numpy())
         all_preds.extend(preds.cpu().numpy())
+        
 
 accuracy = accuracy_score(all_labels, all_preds)
 print(f'Overall Accuracy: {accuracy:.6f}')
