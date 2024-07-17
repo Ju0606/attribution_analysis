@@ -5,7 +5,6 @@ import torch
 import cv2
 import numpy as np
 from torch.utils.data import Dataset
-from mypath import Path
 from sklearn.utils.class_weight import compute_class_weight
 
 import pandas as pd
@@ -23,8 +22,12 @@ class VideoDataset(Dataset):
             preprocess (bool): Determines whether to preprocess dataset. Default is False.
     """
 
-    def __init__(self, dataset='ucf101', split='train', clip_len=16, preprocess=False):
-        self.root_dir, self.output_dir = Path.db_dir(dataset)
+    def __init__(self, dataset='ucf101', split='train', clip_len=16, preprocess=False, output_dir='f2'):
+        root_dir = '/share/luoqifeng-local/AIDE_Dataset/data_video'
+
+            # Save preprocess data into output_dir
+        #output_dir = '/share/luoqifeng-local/AIDE_Dataset/fold5/f2'
+        self.root_dir, self.output_dir =root_dir,output_dir #Path.db_dir(dataset)
         folder = os.path.join(self.output_dir, split)
         self.clip_len = clip_len
         self.split = split
@@ -54,7 +57,7 @@ class VideoDataset(Dataset):
                 labels.append(label)
                 #print('label:',label)
         assert len(labels) == len(self.fnames)
-        print('Number of {} videos: {:d}'.format(split, len(self.fnames)))
+        #print('Number of {} videos: {:d}'.format(split, len(self.fnames)))
 
         # Prepare a mapping between the label names (strings) and indices (ints)
         self.label2index = {label: index for index, label in enumerate(sorted(set(labels)))}
