@@ -18,7 +18,6 @@ torch.backends.cudnn.enabled=False
 num_classes = 3     
 
 # 设置模型地址和数据集地址
-root_dir='/share/luoqifeng-local/AIDE_Dataset/datasetandmodel'# model和dataset的目录
 model_folder='/share/luoqifeng-local/AIDE_Dataset/datasetandmodel/model'# model文件夹
 fold_folder='/share/luoqifeng-local/AIDE_Dataset/datasetandmodel/fold5'# dataset文件夹
 models=os.listdir(model_folder)
@@ -39,7 +38,7 @@ fold_accuracies = []
 
 for fold_idx in range(5):
     print(f"Evaluating fold {fold_idx} ,Using model:{models[fold_idx].split('.')[0]},Using dataset:{folds[fold_idx]}")
-    model_path=os.path.join(root_dir,'model',models[fold_idx])
+    model_path=os.path.join(model_folder,models[fold_idx])
     # 加载训练好的模型
     model = C3D_model.C3D(num_classes=num_classes, pretrained=False)
     checkpoint = torch.load(model_path, map_location=device)
@@ -49,7 +48,7 @@ for fold_idx in range(5):
     model.eval()
     
     
-    fold_dir=os.path.join(root_dir,'fold5',folds[fold_idx])
+    fold_dir=os.path.join(fold_folder,folds[fold_idx])
     # 加载测试集
     val_dataloader = DataLoader(VideoDataset(split='val', clip_len=32,output_dir=fold_dir),batch_size=32, num_workers=4)
 

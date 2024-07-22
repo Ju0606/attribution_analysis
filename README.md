@@ -26,9 +26,9 @@ pip install tqdm tensorboardX numpy==1.24 scipy scikit-learn pandas
 conda install opencv 
 pip install torch==2.3.0+cu121 torchvision==0.18.0+cu121 -f https://download.pytorch.org/whl/torch_stable.html
 
-修改test.py中的root_dir、model_folder、fold_folder、device
+修改test.py中的model_folder、fold_folder、device
 
-cd ../medium/attribution_analysis
+cd ../attribution_analysis
 python test.py
 ```
 
