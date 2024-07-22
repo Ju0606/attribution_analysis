@@ -26,6 +26,10 @@ pip install tqdm tensorboardX numpy==1.24 scipy scikit-learn pandas
 conda install opencv 
 pip install torch==2.3.0+cu121 torchvision==0.18.0+cu121 -f https://download.pytorch.org/whl/torch_stable.html
 
+修改test.py中的root_dir、model_folder、fold_folder
+
+cd ../medium/attribution_analysis
+python test.py
 ```
 需要显存9G左右，numpy版本高了(2.x.x)会报错  
 修改test.py中的root_dir、model_folder、fold_folder
