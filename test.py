@@ -18,9 +18,9 @@ torch.backends.cudnn.enabled=False
 num_classes = 3     
 
 # 设置模型地址和数据集地址
-root_dir='/share/luoqifeng-local/AIDE_Dataset'# model和dataset的目录
-model_folder='/share/luoqifeng-local/AIDE_Dataset/model'# model文件夹
-fold_folder='/share/luoqifeng-local/AIDE_Dataset/fold5'# dataset文件夹
+root_dir='/share/luoqifeng-local/AIDE_Dataset/datasetandmodel'# model和dataset的目录
+model_folder='/share/luoqifeng-local/AIDE_Dataset/datasetandmodel/model'# model文件夹
+fold_folder='/share/luoqifeng-local/AIDE_Dataset/datasetandmodel/fold5'# dataset文件夹
 models=os.listdir(model_folder)
 folds=os.listdir(fold_folder)
 '''
@@ -38,7 +38,7 @@ All_labels = []
 fold_accuracies = []
 
 for fold_idx in range(5):
-    print(f"Evaluating fold {fold_idx} ,Using model:{models[fold_idx]},Using dataset:{folds[fold_idx]}")
+    print(f"Evaluating fold {fold_idx} ,Using model:{models[fold_idx].split('.')[0]},Using dataset:{folds[fold_idx]}")
     model_path=os.path.join(root_dir,'model',models[fold_idx])
     # 加载训练好的模型
     model = C3D_model.C3D(num_classes=num_classes, pretrained=False)
