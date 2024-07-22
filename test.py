@@ -18,8 +18,8 @@ torch.backends.cudnn.enabled=False
 num_classes = 3     
 
 # 设置模型地址和数据集地址
-model_folder='/share/luoqifeng-local/AIDE_Dataset/datasetandmodel/model'# model文件夹
-fold_folder='/share/luoqifeng-local/AIDE_Dataset/datasetandmodel/fold5'# dataset文件夹
+model_folder='/datasetandmodel/model'# model文件夹
+fold_folder='/datasetandmodel/fold5'# dataset文件夹
 models=os.listdir(model_folder)
 folds=os.listdir(fold_folder)
 '''
